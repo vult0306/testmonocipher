@@ -466,6 +466,17 @@ void generate_bike_keys(void) {
 	printf("\n");
 }
 
+
+void generate_server_key(void) {
+
+	FILE* fptr_id;
+	fptr_id = fopen("server.bin", "wb");
+
+	uint8_t public_key[X25519_KEY_LEN] = {0x4f,0x63,0x2d,0x21,0xc7,0xce,0x86,0x7f,0x03,0x1b,0x28,0xbc,0x96,0x32,0x90,0x74,0xe4,0x1c,0x26,0xb1,0x0d,0x59,0x08,0xf6,0xa4,0x1b,0x10,0x15,0x03,0x3c,0xe5,0x1e};
+	fwrite(public_key,X25519_KEY_LEN,1,fptr_id);
+	fclose(fptr_id);
+}
+
 // 10f195a5de4b01fc425936c6ff4503b107551a516e5eb96X25519_KEY_LEN48c8d72960e3346
 int main(void) {
 	srand(time(NULL));   // Initialization, should only be called once.
@@ -480,7 +491,8 @@ int main(void) {
 	// printf("test 5\n");
 	// test5();
 	printf("generate keys\n");
-	generate_bike_keys();
+	// generate_bike_keys();
+	generate_server_key();
     return 0;
 }
 
